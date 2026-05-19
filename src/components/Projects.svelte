@@ -12,8 +12,9 @@
       {#each projects as project}
         <TimelineItem
           title={project.name}
-          startDate={project.startDate}
+          startDate={project.endDate ? project.startDate : undefined}
           endDate={project.endDate}
+          singleDate={project.endDate ? undefined : project.startDate}
           {language}
           summary={project.description}
           highlights={project.highlights}
