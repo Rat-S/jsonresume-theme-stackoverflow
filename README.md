@@ -1,6 +1,6 @@
 # @deadrat/jsonresume-theme-stackoverflow
 
-> ⚠️ **Note:** This is a customized, private fork of the original theme maintained by `@deadrat` (specifically containing custom typography adjustments and tailored ordering suited to my resume). Most users should check out and use the original, excellent upstream repository at [phoinixi/jsonresume-theme-stackoverflow](https://github.com/phoinixi/jsonresume-theme-stackoverflow).
+> ⚠️ **Note:** This is a customized, private fork of the original theme maintained. (It specifically contains custom typography adjustments and tailored ordering suited to my resume). Most users should check out and use the original, excellent upstream repository at [phoinixi/jsonresume-theme-stackoverflow](https://github.com/phoinixi/jsonresume-theme-stackoverflow).
 
 > 🚀 A Svelte-powered Stack Overflow theme for [JSON Resume](https://jsonresume.org/)
 
@@ -27,8 +27,8 @@
 
 ## 📸 Screenshots
 
-| Light Mode | Dark Mode |
-|:---:|:---:|
+|                                                  Light Mode                                                  |                                                 Dark Mode                                                  |
+| :----------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
 | ![Light mode](https://raw.githubusercontent.com/phoinixi/jsonresume-theme-stackoverflow/main/docs/light.png) | ![Dark mode](https://raw.githubusercontent.com/phoinixi/jsonresume-theme-stackoverflow/main/docs/dark.png) |
 
 ## 📦 Installation
@@ -50,35 +50,35 @@ resuml serve -t stackoverflow        # Live preview
 ### Programmatic Usage
 
 ```js
-const theme = require('jsonresume-theme-stackoverflow');
-const resume = require('./resume.json');
+const theme = require("jsonresume-theme-stackoverflow");
+const resume = require("./resume.json");
 
 // Optional: set language (default: "en-gb")
-theme.changeLanguage('de');
+theme.changeLanguage("de");
 
 const html = theme.render(resume);
 ```
 
 ## 🌍 Supported Languages
 
-| Code | Language |
-|------|----------|
-| `en-gb` / `en` | English (default) |
-| `de` | German / Deutsch |
-| `fr` | French / Français |
-| `es` | Spanish / Español |
-| `it` | Italian / Italiano |
-| `pt` | Portuguese / Português |
-| `zh` | Chinese / 中文 |
-| `ja` | Japanese / 日本語 |
-| `ko` | Korean / 한국어 |
-| `nl` | Dutch / Nederlands |
-| `pl` | Polish / Polski |
-| `ru` | Russian / Русский |
+| Code           | Language               |
+| -------------- | ---------------------- |
+| `en-gb` / `en` | English (default)      |
+| `de`           | German / Deutsch       |
+| `fr`           | French / Français      |
+| `es`           | Spanish / Español      |
+| `it`           | Italian / Italiano     |
+| `pt`           | Portuguese / Português |
+| `zh`           | Chinese / 中文         |
+| `ja`           | Japanese / 日本語      |
+| `ko`           | Korean / 한국어        |
+| `nl`           | Dutch / Nederlands     |
+| `pl`           | Polish / Polski        |
+| `ru`           | Russian / Русский      |
 
 ```js
-const theme = require('jsonresume-theme-stackoverflow');
-theme.changeLanguage('fr'); // Set before calling render()
+const theme = require("jsonresume-theme-stackoverflow");
+theme.changeLanguage("fr"); // Set before calling render()
 const html = theme.render(resume);
 ```
 
@@ -103,19 +103,19 @@ Customize colors and fonts by adding a `theme` object inside `meta` in your `res
 
 ### Available theme properties
 
-| Property | CSS Variable | Description |
-|----------|-------------|-------------|
-| `primaryColor` | `--color-accent` | Section titles, accents |
-| `textColor` | `--color-text` | Main body text |
+| Property             | CSS Variable             | Description                       |
+| -------------------- | ------------------------ | --------------------------------- |
+| `primaryColor`       | `--color-accent`         | Section titles, accents           |
+| `textColor`          | `--color-text`           | Main body text                    |
 | `textSecondaryColor` | `--color-text-secondary` | Secondary text (companies, dates) |
-| `headingColor` | `--color-heading` | Heading color |
-| `linkColor` | `--color-link` | Link color |
-| `backgroundColor` | `--color-background` | Page background |
-| `backgroundAltColor` | `--color-background-alt` | Summary section background |
-| `borderColor` | `--color-border` | Border colors |
-| `keywordTextColor` | `--color-keyword-text` | Skill/keyword tag text |
-| `keywordBgColor` | `--color-keyword-bg` | Skill/keyword tag background |
-| `fontFamily` | `--font-family` | Base font family |
+| `headingColor`       | `--color-heading`        | Heading color                     |
+| `linkColor`          | `--color-link`           | Link color                        |
+| `backgroundColor`    | `--color-background`     | Page background                   |
+| `backgroundAltColor` | `--color-background-alt` | Summary section background        |
+| `borderColor`        | `--color-border`         | Border colors                     |
+| `keywordTextColor`   | `--color-keyword-text`   | Skill/keyword tag text            |
+| `keywordBgColor`     | `--color-keyword-bg`     | Skill/keyword tag background      |
+| `fontFamily`         | `--font-family`          | Base font family                  |
 
 ### Override CSS
 

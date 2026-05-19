@@ -46,7 +46,7 @@
 
     <BirthDate birth={basics.birth} />
 
-    <ContactInfo website={basics.website} email={basics.email} phone={basics.phone} />
+    <ContactInfo website={basics.url || basics.website} email={basics.email} phone={basics.phone} />
 
     {#if basics.profiles?.length}
       <nav class="profiles" aria-label="Social profiles">

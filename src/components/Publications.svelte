@@ -18,7 +18,7 @@
           title={pub.name}
           subtitle={pub.publisher ? 'in ' + pub.publisher : ''}
           subtitleClass="publisher"
-          url={pub.website}
+          url={pub.url || pub.website}
           singleDate={pub.releaseDate ? MY(pub.releaseDate) : undefined}
           {language}
           summary={pub.summary}
