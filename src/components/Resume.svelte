@@ -15,7 +15,7 @@
   let { resume, language = 'en-gb' } = $props();
 
   const defaultOrder = [
-    'basics', 'work', 'projects', 'volunteer', 'education',
+    'basics', 'work', 'education', 'projects', 'volunteer',
     'awards', 'certificates', 'publications', 'skills',
     'languages', 'interests', 'references'
   ];

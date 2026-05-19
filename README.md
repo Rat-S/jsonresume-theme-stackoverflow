@@ -139,7 +139,7 @@ Control the order of resume sections by adding a `sectionOrder` array to `meta.t
 
 `basics`, `skills`, `work`, `projects`, `volunteer`, `education`, `awards`, `certificates`, `publications`, `languages`, `interests`, `references`
 
-**Default order:** basics → work → projects → volunteer → education → awards → certificates → publications → skills → languages → interests → references
+**Default order:** basics → work → education → projects → volunteer → awards → certificates → publications → skills → languages → interests → references
 
 Only sections listed in `sectionOrder` will be rendered. Omit sections to hide them, or include all for full control over ordering.
 
