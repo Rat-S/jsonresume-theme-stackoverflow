@@ -13,13 +13,13 @@
   --font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
 
   /* Type scale — 14px base, ~1.14 ratio (subtle, professional) */
-  --fs-name: 2.143rem;       /* 30px */
-  --fs-label: 1.429rem;      /* 20px */
+  --fs-name: 1.857rem;       /* 26px (reduced from 30px) */
+  --fs-label: 1.286rem;      /* 18px (reduced from 20px) */
   --fs-title: 1.143rem;      /* 16px */
   --fs-card: 1.071rem;       /* 15px */
   --fs-body: 1rem;           /* 14px */
   --fs-meta: 0.929rem;       /* 13px (date, location, keywords) */
-  --fs-section: 0.857rem;    /* 12px caps with tracking */
+  --fs-section: 0.929rem;    /* 13px caps with tracking (increased from 12px) */
   --fs-fine: 0.786rem;       /* 11px */
 
   /* Line heights — multiples of 4 against base */

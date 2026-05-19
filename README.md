@@ -1,12 +1,12 @@
-# jsonresume-theme-stackoverflow
+# @deadrat/jsonresume-theme-stackoverflow
+
+> ⚠️ **Note:** This is a customized, private fork of the original theme maintained by `@deadrat` (specifically containing custom typography adjustments and tailored ordering suited to my resume). Most users should check out and use the original, excellent upstream repository at [phoinixi/jsonresume-theme-stackoverflow](https://github.com/phoinixi/jsonresume-theme-stackoverflow).
 
 > 🚀 A Svelte-powered Stack Overflow theme for [JSON Resume](https://jsonresume.org/)
 
-[![npm version](https://img.shields.io/npm/v/jsonresume-theme-stackoverflow)](https://www.npmjs.com/package/jsonresume-theme-stackoverflow)
-[![npm downloads](https://img.shields.io/npm/dm/jsonresume-theme-stackoverflow)](https://www.npmjs.com/package/jsonresume-theme-stackoverflow)
-[![license](https://img.shields.io/npm/l/jsonresume-theme-stackoverflow)](https://github.com/phoinixi/jsonresume-theme-stackoverflow/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/phoinixi/jsonresume-theme-stackoverflow)](https://github.com/phoinixi/jsonresume-theme-stackoverflow)
-[![Node version](https://img.shields.io/node/v/jsonresume-theme-stackoverflow)](https://nodejs.org)
+[![npm version](https://img.shields.io/npm/v/@deadrat/jsonresume-theme-stackoverflow)](https://www.npmjs.com/package/@deadrat/jsonresume-theme-stackoverflow)
+[![license](https://img.shields.io/npm/l/@deadrat/jsonresume-theme-stackoverflow)](https://github.com/Rat-S/jsonresume-theme-stackoverflow/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/Rat-S/jsonresume-theme-stackoverflow)](https://github.com/Rat-S/jsonresume-theme-stackoverflow)
 
 ## 🔗 Related
 
@@ -34,7 +34,7 @@
 ## 📦 Installation
 
 ```bash
-npm install jsonresume-theme-stackoverflow
+npm install @deadrat/jsonresume-theme-stackoverflow
 ```
 
 ### With resuml (recommended)
@@ -139,7 +139,7 @@ Control the order of resume sections by adding a `sectionOrder` array to `meta.t
 
 `basics`, `skills`, `work`, `projects`, `volunteer`, `education`, `awards`, `certificates`, `publications`, `languages`, `interests`, `references`
 
-**Default order:** basics → skills → work → projects → volunteer → education → awards → certificates → publications → languages → interests → references
+**Default order:** basics → work → projects → volunteer → education → awards → certificates → publications → skills → languages → interests → references
 
 Only sections listed in `sectionOrder` will be rendered. Omit sections to hide them, or include all for full control over ordering.
 
