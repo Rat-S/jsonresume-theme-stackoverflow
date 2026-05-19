@@ -1,6 +1,6 @@
 {
   "name": "@deadrat/jsonresume-theme-stackoverflow",
-  "version": "3.3.2",
+  "version": "3.3.4",
   "description": "Stack Overflow theme for JSON Resume — Svelte SSR (deadrat fork)",
   "author": "Francesco Esposito (fork by deadrat)",
   "scripts": {

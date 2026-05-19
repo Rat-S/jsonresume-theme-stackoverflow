@@ -14,7 +14,7 @@
       <ul class="highlights">
         {#each certificates as cert}
           <li>
-            {cert.name}{#if cert.issuer} &ndash; {cert.issuer}{/if}{#if cert.date} ({MY(cert.date)}){/if}
+            {cert.name}{#if cert.issuer}{' - '}<i>{cert.issuer}</i>{/if}{#if cert.date} ({MY(cert.date)}){/if}
             {#if cert.url}
               <span class="url">
                 <span class="fa-solid fa-up-right-from-square"></span>
