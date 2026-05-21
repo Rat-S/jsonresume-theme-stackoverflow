@@ -79,7 +79,7 @@ a:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; b
 
 /* Print */
 @media print {
-  @page { margin: 1.4cm 1.4cm; }
+  @page { margin: 0.7cm 0.8cm 0.6cm 0.8cm; }
   body { line-height: var(--lh-snug); }
   ul { margin-top: var(--sp-2); }
   ul, li { padding: 0; }

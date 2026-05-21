@@ -50,7 +50,11 @@
   }
 
   @media print {
-    .highlights { margin: var(--sp-2) 0 0 0; }
-    .highlights > li { margin-top: var(--sp-1); line-height: var(--lh-snug); }
+    .highlights { margin: var(--sp-1) 0 0 0; }
+    .highlights > li {
+      margin-top: 2px;
+      line-height: var(--lh-tight);
+      font-size: var(--fs-meta);
+    }
   }
 </style>

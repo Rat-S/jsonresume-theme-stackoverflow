@@ -164,7 +164,15 @@
   }
 
   @media print {
-    .timeline-item { margin-top: var(--sp-3); }
+    .timeline-item {
+      margin-top: var(--sp-3);
+      break-inside: auto;
+      page-break-inside: auto;
+    }
+    .timeline-item > header {
+      break-after: avoid;
+      page-break-after: avoid;
+    }
     .company a { color: var(--color-text); }
     .company::before,
     .institution::before,

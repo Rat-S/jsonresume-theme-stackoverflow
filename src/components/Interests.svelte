@@ -59,4 +59,18 @@
   @media screen and (min-width: 480px) and (max-width: 601px) {
     .interests-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
+
+  @media print {
+    .interests-grid {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: var(--sp-5);
+      row-gap: var(--sp-3);
+    }
+    .interest-item {
+      flex: 0 0 calc((100% - (var(--interests-cols) - 1) * var(--sp-5)) / var(--interests-cols));
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+  }
 </style>

@@ -52,7 +52,14 @@
 
   @media print {
     .skills-grid { column-gap: var(--sp-4); row-gap: var(--sp-3); }
-    .skills-grid .skill-item { display: flex; flex-direction: column; margin: 0; padding: 0; }
+    .skills-grid .skill-item {
+      display: flex;
+      flex-direction: column;
+      margin: 0;
+      padding: 0;
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
   }
 
   @media screen and (max-width: 479px) {
