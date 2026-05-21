@@ -34,7 +34,7 @@
 
   @media print {
     ul { margin: var(--sp-2) 0 0 0; }
-    li { margin: 0; padding: 0; font-size: var(--fs-meta); background: transparent; line-height: var(--lh-snug); }
+    li { margin: 0; padding: 0; font-size: var(--fs-meta); background: transparent; line-height: var(--lh-snug); white-space: normal; }
     li::after { padding: 0 0.4em; content: "·"; color: var(--color-text-muted); }
     li:last-of-type::after { content: ""; }
     :global(.skills-grid) li::after { padding: 0 0.35em; content: "·"; color: var(--color-text-muted); }
