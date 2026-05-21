@@ -5,11 +5,15 @@
   import FormattedText from './FormattedText.svelte';
 
   let { interests = [] } = $props();
+
+  let columns = $derived(
+    interests.length === 1 ? 1 : (interests.length === 2 || interests.length === 4 ? 2 : 3)
+  );
 </script>
 
 {#if interests?.length}
   <SectionHeader title={t('resume.interests')} count={interests.length}>
-    <section class="interests-grid">
+    <section class="interests-grid" style="--interests-cols: {columns}">
       {#each interests as interest}
         <div class="interest-item">
           {#if interest.name}
@@ -30,7 +34,7 @@
 <style>
   .interests-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--interests-cols, 3), minmax(0, 1fr));
     column-gap: var(--sp-5);
     row-gap: var(--sp-3);
   }

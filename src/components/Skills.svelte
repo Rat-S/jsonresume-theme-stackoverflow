@@ -5,11 +5,15 @@
   import KeywordList from './KeywordList.svelte';
 
   let { skills = [] } = $props();
+
+  let columns = $derived(
+    skills.length === 1 ? 1 : (skills.length === 2 || skills.length === 4 ? 2 : 3)
+  );
 </script>
 
 {#if skills?.length}
   <SectionHeader title={t('resume.skills')}>
-    <section class="skills-grid">
+    <section class="skills-grid" style="--skills-cols: {columns}">
       {#each skills as skill}
         <div class="skill-item">
           {#if skill.name}
@@ -28,7 +32,7 @@
 <style>
   .skills-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--skills-cols, 3), minmax(0, 1fr));
     column-gap: var(--sp-5);
     row-gap: var(--sp-3);
   }

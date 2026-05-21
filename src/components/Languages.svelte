@@ -4,11 +4,15 @@
   import LevelBar from './LevelBar.svelte';
 
   let { languages = [] } = $props();
+
+  let columns = $derived(
+    languages.length === 1 ? 1 : (languages.length === 2 || languages.length === 4 ? 2 : 3)
+  );
 </script>
 
 {#if languages?.length}
   <SectionHeader title={t('resume.languages')} count={languages.length}>
-    <section class="languages-grid">
+    <section class="languages-grid" style="--languages-cols: {columns}">
       {#each languages as lang}
         <div class="language-entry display">
           {#if lang.language}
@@ -28,7 +32,7 @@
 <style>
   .languages-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--languages-cols, 3), minmax(0, 1fr));
     column-gap: var(--sp-5);
     row-gap: var(--sp-3);
   }
