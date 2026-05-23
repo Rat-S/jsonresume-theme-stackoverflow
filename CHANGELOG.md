@@ -1,3 +1,10 @@
+## [3.3.6](https://github.com/Rat-S/jsonresume-theme-stackoverflow/compare/v3.3.5...v3.3.6) (2026-05-23)
+
+
+### Bug Fixes
+
+* **ci:** bypass semantic-release npm token validation for OIDC ([a7c0dec](https://github.com/Rat-S/jsonresume-theme-stackoverflow/commit/a7c0dec4e3061361973716f9adaefc1555937462))
+
 # 1.0.0 (2026-05-23)
 
 
