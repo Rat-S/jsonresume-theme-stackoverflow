@@ -31,7 +31,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 26
           cache: npm
 
       - name: Install dependencies
@@ -46,6 +46,5 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: "00000000-0000-0000-0000-000000000000"
-          HUSKY: '0'
+          HUSKY: "0"
         run: npx semantic-release
