@@ -351,8 +351,8 @@ describe("Section ordering", () => {
     const body = html.split('<body>')[1];
     const skillsIdx = body.indexOf(">Skills<");
     const workIdx = body.indexOf("Work Experience");
-    // Default: skills before work
-    expect(skillsIdx).toBeLessThan(workIdx);
+    // Default: work before skills
+    expect(workIdx).toBeLessThan(skillsIdx);
   });
 
   test("invalid section names are filtered out", () => {
