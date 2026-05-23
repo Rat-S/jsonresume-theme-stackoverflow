@@ -46,5 +46,6 @@ jobs:
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: "00000000-0000-0000-0000-000000000000"
           HUSKY: '0'
         run: npx semantic-release
