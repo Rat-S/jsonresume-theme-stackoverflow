@@ -1,6 +1,6 @@
 {
   "name": "@deadrat/jsonresume-theme-stackoverflow",
-  "version": "3.3.5",
+  "version": "3.3.6",
   "description": "Stack Overflow theme for JSON Resume — Svelte SSR (deadrat fork)",
   "author": "Francesco Esposito (fork by deadrat)",
   "scripts": {
@@ -13,6 +13,9 @@
     "url": "git+https://github.com/Rat-S/jsonresume-theme-stackoverflow.git"
   },
   "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "jest": {

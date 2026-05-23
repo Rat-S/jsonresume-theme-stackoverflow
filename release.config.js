@@ -4,8 +4,20 @@ module.exports = {
     '@semantic-release/commit-analyzer',
     '@semantic-release/release-notes-generator',
     '@semantic-release/changelog',
-    ['@semantic-release/npm', { provenance: true }],
-    '@semantic-release/github',
+    [
+      '@semantic-release/npm',
+      {
+        provenance: true,
+      },
+    ],
+    [
+      '@semantic-release/github',
+      {
+        successComment: false,
+        failComment: false,
+        failTitle: false,
+      },
+    ],
     [
       '@semantic-release/git',
       {
