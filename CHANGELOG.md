@@ -1,3 +1,10 @@
+## [3.3.7](https://github.com/Rat-S/jsonresume-theme-stackoverflow/compare/v3.3.6...v3.3.7) (2026-06-05)
+
+
+### Bug Fixes
+
+* improve keyword and certificate pill responsiveness with word-break and printing styles ([f46d845](https://github.com/Rat-S/jsonresume-theme-stackoverflow/commit/f46d845d7309616baad8b782cb04de015b1f5ea8))
+
 ## [3.3.6](https://github.com/Rat-S/jsonresume-theme-stackoverflow/compare/v3.3.5...v3.3.6) (2026-05-23)
 
 
