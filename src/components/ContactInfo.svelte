@@ -47,12 +47,19 @@
     line-height: var(--lh-snug);
     color: var(--color-text);
     background-color: var(--color-background-alt);
-    border: 1px solid var(--color-border-light);
     border-radius: 4px;
   }
 
   .icon {
     margin-right: 0.4em;
     color: var(--color-text-secondary);
+  }
+
+  @media print {
+    .contact-item {
+      background-color: var(--color-background-alt) !important;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
   }
 </style>
