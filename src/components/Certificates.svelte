@@ -13,26 +13,14 @@
     <section id="certificates">
       <ul class="certs-list">
         {#each certificates as cert}
-          <li class="cert-pill">
+          <li class="cert-item">
             {#if cert.url}
               <a target="_blank" href={cert.url} class="cert-link">
-                <span class="cert-name">{cert.name}</span>{#if cert.issuer}<span
-                    class="cert-issuer"
-                  >
-                    · {cert.issuer}</span
-                  >{/if}{#if cert.date}<span class="cert-date">
-                    ({MY(cert.date)})</span
-                  >{/if}
+                <span class="cert-name">{cert.name}</span>{#if cert.issuer}<span class="cert-issuer"> · {cert.issuer}</span>{/if}{#if cert.date}<span class="cert-date"> ({MY(cert.date)})</span>{/if}
                 <span class="fa-solid fa-up-right-from-square cert-icon"></span>
               </a>
             {:else}
-              <span class="cert-name">{cert.name}</span>{#if cert.issuer}<span
-                  class="cert-issuer"
-                >
-                  · {cert.issuer}</span
-                >{/if}{#if cert.date}<span class="cert-date">
-                  ({MY(cert.date)})</span
-                >{/if}
+              <span class="cert-name">{cert.name}</span>{#if cert.issuer}<span class="cert-issuer"> · {cert.issuer}</span>{/if}{#if cert.date}<span class="cert-date"> ({MY(cert.date)})</span>{/if}
             {/if}
           </li>
         {/each}
@@ -46,26 +34,28 @@
     margin: var(--sp-2) 0 0 0;
     padding: 0;
     list-style: none;
+    column-count: 2;
+    column-gap: var(--sp-6);
   }
 
-  .cert-pill {
-    display: inline-block;
-    margin: 4px 6px 4px 0;
-    padding: 3px 8px;
+  .cert-item {
+    display: block;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    margin-bottom: 6px;
     font-size: var(--fs-meta);
     line-height: var(--lh-snug);
-    color: var(--color-keyword-text);
-    background-color: var(--color-keyword-bg);
-    border: 0 solid var(--color-keyword-border);
-    border-radius: 4px;
-    white-space: normal;
-    max-width: 100%;
-    word-break: break-word;
+    color: var(--color-text);
+    position: relative;
+    padding-left: 14px;
   }
 
-  .cert-pill:hover {
-    background-color: var(--color-keyword-bg);
-    opacity: 0.9;
+  .cert-item::before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: var(--color-accent);
+    font-weight: bold;
   }
 
   .cert-link {
@@ -75,6 +65,7 @@
 
   .cert-link:hover {
     text-decoration: underline;
+    color: var(--color-link);
   }
 
   .cert-icon {
@@ -96,26 +87,20 @@
   @media print {
     .certs-list {
       margin: var(--sp-1) 0 0 0;
-      padding: 0;
+      column-count: 2;
+      column-gap: var(--sp-4);
     }
-    .cert-pill {
-      display: inline-block;
-      margin: 2px 4px 2px 0;
-      padding: 2px 6px;
-      font-size: var(--fs-meta);
-      line-height: var(--lh-snug);
-      color: var(--color-keyword-text);
-      background-color: var(--color-keyword-bg);
-      border: 0 solid var(--color-keyword-border);
-      border-radius: 3px;
-      white-space: normal;
-      max-width: 100%;
-      word-break: break-word;
-      print-color-adjust: exact;
-      -webkit-print-color-adjust: exact;
+    .cert-item {
+      margin-bottom: 4px;
     }
     .cert-icon {
       display: none;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .certs-list {
+      column-count: 1;
     }
   }
 </style>
