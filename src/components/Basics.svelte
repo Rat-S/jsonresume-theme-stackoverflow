@@ -7,6 +7,19 @@
   import FormattedText from './FormattedText.svelte';
 
   let { basics } = $props();
+
+  // Helper to format location into a single string
+  function formatLocation(loc) {
+    if (!loc) return '';
+    const parts = [];
+    if (loc.city) parts.push(loc.city);
+    if (loc.region) parts.push(loc.region);
+    let str = parts.join(', ');
+    if (loc.countryCode) {
+      str += ` (${loc.countryCode})`;
+    }
+    return str;
+  }
 </script>
 
 {#if basics}
@@ -24,29 +37,14 @@
       </div>
     {/if}
 
-    {#if basics.location}
-      <span class="location">
-        {#if basics.location.address}
-          <span>{basics.location.address},</span>
-        {/if}
-        {#if basics.location.postalCode}
-          <span>{basics.location.postalCode},</span>
-        {/if}
-        {#if basics.location.city}
-          <span>{basics.location.city},</span>
-        {/if}
-        {#if basics.location.region}
-          <span>{basics.location.region}</span>
-        {/if}
-        {#if basics.location.countryCode}
-          <span>({basics.location.countryCode})</span>
-        {/if}
-      </span>
-    {/if}
-
     <BirthDate birth={basics.birth} />
 
-    <ContactInfo website={basics.url || basics.website} email={basics.email} phone={basics.phone} />
+    <ContactInfo 
+      website={basics.url || basics.website} 
+      email={basics.email} 
+      phone={basics.phone} 
+      location={formatLocation(basics.location)} 
+    />
 
     {#if basics.profiles?.length}
       <nav class="profiles" aria-label="Social profiles">
@@ -68,7 +66,7 @@
 
 <style>
   .header {
-    margin-bottom: var(--sp-5);
+    margin-bottom: var(--sp-4);
   }
 
   .name {
@@ -88,12 +86,6 @@
     margin-bottom: var(--sp-3);
   }
 
-  .location {
-    color: var(--color-text-secondary);
-    margin-bottom: var(--sp-2);
-    display: block;
-  }
-
   .image {
     width: 11em;
     float: right;
@@ -104,24 +96,12 @@
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
-    margin-top: var(--sp-1);
+    margin-top: var(--sp-2);
     gap: var(--sp-1) 0;
   }
 
-  .section {
-    margin-bottom: 1rem;
-  }
-
-  .main-summary {
-    background: var(--color-background-alt);
-    padding: var(--sp-4);
-    line-height: var(--lh-base);
-  }
-
-  /* p margin reset handled by summary wrapper */
-
   @media print {
-    .header { margin-bottom: var(--sp-4); }
+    .header { margin-bottom: var(--sp-3); }
     .profiles :global(a:not(.hide-href-print))::after {
       content: " · " attr(href);
       font-size: var(--fs-fine);
@@ -137,7 +117,6 @@
 
   @media screen and (max-width: 601px) {
     .header .profiles, .header :global(.contact) { flex-wrap: wrap; }
-    .header > div > div { margin-right: 0.8em; margin-bottom: 0.3em; }
     .name { font-size: 1.857rem; }
     .label { font-size: 1.286rem; }
     .image { float: none; display: block; margin: 0 auto 1rem; width: 8em; }

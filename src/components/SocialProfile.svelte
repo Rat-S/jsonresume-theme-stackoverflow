@@ -55,9 +55,15 @@
 
 <style>
   .item {
-    padding: 0;
-    margin-right: var(--sp-4);
+    display: inline-block;
+    padding: 3px 8px;
+    margin-top: var(--sp-1);
+    margin-right: 6px;
+    font-size: var(--fs-meta);
     line-height: var(--lh-snug);
+    background-color: var(--color-background-alt);
+    border: 1px solid var(--color-border-light);
+    border-radius: 4px;
   }
 
   .social {
