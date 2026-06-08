@@ -7,7 +7,7 @@
 
 {#if skills?.length}
   <SectionHeader title={t('resume.skills')}>
-    <section class="skills-rows">
+    <section class="skills-columns">
       {#each skills as skill}
         <div class="skill-row">
           {#if skill.name}
@@ -25,13 +25,15 @@
 {/if}
 
 <style>
-  .skills-rows {
+  .skills-columns {
     margin-top: var(--sp-2);
+    column-count: 2;
+    column-gap: var(--sp-6);
   }
 
   .skill-row {
     display: block;
-    margin-bottom: var(--sp-2);
+    margin-bottom: var(--sp-3);
     line-height: var(--lh-base);
     break-inside: avoid;
     page-break-inside: avoid;
@@ -63,8 +65,17 @@
   }
 
   @media print {
+    .skills-columns {
+      column-gap: var(--sp-4);
+    }
     .skill-row {
-      margin-bottom: var(--sp-1_5);
+      margin-bottom: var(--sp-2);
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    .skills-columns {
+      column-count: 1;
     }
   }
 </style>
