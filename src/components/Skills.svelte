@@ -16,7 +16,7 @@
             </span>
           {/if}
           <span class="keywords-list">
-            {skill.keywords.join(', ')}
+            {skill.keywords?.join(', ') || ''}
           </span>
         </div>
       {/each}
