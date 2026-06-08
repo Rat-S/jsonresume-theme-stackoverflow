@@ -18,20 +18,23 @@
   li {
     display: inline-block;
     margin: 2px 4px 2px 0;
-    padding: 2px 6px;
+    padding: 3px 8px;
     font-size: var(--fs-fine);
-    line-height: 1.5;
+    line-height: 1.4;
     color: var(--color-keyword-text);
     background-color: var(--color-keyword-bg);
-    border: 0 solid var(--color-keyword-border);
-    border-radius: 3px;
+    border: 1px solid var(--color-keyword-border);
+    border-radius: 4px;
     white-space: normal;
     max-width: 100%;
     word-break: break-word;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
   }
 
   li:hover {
-    background: var(--color-keyword-bg);
+    background-color: var(--color-keyword-border);
+    transform: translateY(-1px);
+    cursor: default;
   }
 
   @media print {
@@ -51,6 +54,8 @@
       word-break: break-word;
       print-color-adjust: exact;
       -webkit-print-color-adjust: exact;
+      transform: none;
+      transition: none;
     }
     li::after { content: none; }
     :global(.skills-grid) li::after { content: none; }

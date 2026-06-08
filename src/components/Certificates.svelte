@@ -1,26 +1,38 @@
 <script>
-  import { t } from '../utils/helpers.ts';
-  import { getDateHelpers } from '../utils/date-helpers.ts';
-  import SectionHeader from './SectionHeader.svelte';
+  import { t } from "../utils/helpers.ts";
+  import { getDateHelpers } from "../utils/date-helpers.ts";
+  import SectionHeader from "./SectionHeader.svelte";
 
-  let { certificates = [], language = 'en-gb' } = $props();
+  let { certificates = [], language = "en-gb" } = $props();
 
   const { MY } = getDateHelpers(language);
 </script>
 
 {#if certificates?.length}
-  <SectionHeader title={t('resume.certificates')} count={certificates.length}>
+  <SectionHeader title={t("resume.certificates")} count={certificates.length}>
     <section id="certificates">
       <ul class="certs-list">
         {#each certificates as cert}
           <li class="cert-pill">
             {#if cert.url}
               <a target="_blank" href={cert.url} class="cert-link">
-                <span class="cert-name">{cert.name}</span>{#if cert.issuer}<span class="cert-issuer"> · {cert.issuer}</span>{/if}{#if cert.date}<span class="cert-date"> ({MY(cert.date)})</span>{/if}
+                <span class="cert-name">{cert.name}</span>{#if cert.issuer}<span
+                    class="cert-issuer"
+                  >
+                    · {cert.issuer}</span
+                  >{/if}{#if cert.date}<span class="cert-date">
+                    ({MY(cert.date)})</span
+                  >{/if}
                 <span class="fa-solid fa-up-right-from-square cert-icon"></span>
               </a>
             {:else}
-              <span class="cert-name">{cert.name}</span>{#if cert.issuer}<span class="cert-issuer"> · {cert.issuer}</span>{/if}{#if cert.date}<span class="cert-date"> ({MY(cert.date)})</span>{/if}
+              <span class="cert-name">{cert.name}</span>{#if cert.issuer}<span
+                  class="cert-issuer"
+                >
+                  · {cert.issuer}</span
+                >{/if}{#if cert.date}<span class="cert-date">
+                  ({MY(cert.date)})</span
+                >{/if}
             {/if}
           </li>
         {/each}

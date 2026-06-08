@@ -1,28 +1,22 @@
 <script>
   import { t } from '../utils/helpers.ts';
   import SectionHeader from './SectionHeader.svelte';
-  import LevelBar from './LevelBar.svelte';
   import KeywordList from './KeywordList.svelte';
 
   let { skills = [] } = $props();
-
-  let columns = $derived(
-    skills.length === 1 ? 1 : (skills.length === 2 || skills.length === 4 ? 2 : 3)
-  );
 </script>
 
 {#if skills?.length}
   <SectionHeader title={t('resume.skills')}>
-    <section class="skills-grid" style="--skills-cols: {columns}">
+    <section class="skills-rows">
       {#each skills as skill}
-        <div class="skill-item">
+        <div class="skill-row">
           {#if skill.name}
-            <h3 class="name">{skill.name}</h3>
+            <span class="name">
+              {skill.name}{#if skill.level}<span class="level-text"> ({skill.levelDisplay || skill.level})</span>{/if}:
+            </span>
           {/if}
-          {#if skill.level}
-            <LevelBar level={skill.level} displayText={skill.levelDisplay} name={skill.name} />
-          {/if}
-          <KeywordList keywords={skill.keywords} />
+          <KeywordList keywords={skill.keywords} cssClass="inline-keywords" />
         </div>
       {/each}
     </section>
@@ -30,43 +24,80 @@
 {/if}
 
 <style>
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(var(--skills-cols, 3), minmax(0, 1fr));
-    column-gap: var(--sp-5);
-    row-gap: var(--sp-3);
+  .skills-rows {
+    margin-top: var(--sp-2);
   }
 
-  .skill-item {
-    padding: 0;
-    border-bottom: none;
+  .skill-row {
+    display: block;
+    margin-bottom: var(--sp-2);
+    line-height: 1.8;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .skill-row:last-child {
+    margin-bottom: 0;
   }
 
   .name {
     font-weight: 700;
-    font-size: var(--fs-card);
-    line-height: var(--lh-snug);
+    font-size: var(--fs-body);
     color: var(--color-heading);
-    margin-bottom: var(--sp-1);
+    margin-right: var(--sp-1);
+    display: inline;
+  }
+
+  .level-text {
+    font-weight: 400;
+    font-size: 0.9em;
+    color: var(--color-text-secondary);
+    font-style: italic;
+  }
+
+  :global(.inline-keywords) {
+    display: inline;
+    margin: 0 !important;
+    padding: 0;
+    list-style: none;
+  }
+
+  :global(.inline-keywords li) {
+    display: inline-block;
+    margin: 2px 4px 2px 0 !important;
+    padding: 2px 6px;
+    font-size: var(--fs-fine);
+    line-height: var(--lh-tight);
+    border-radius: 4px;
+    border: 1px solid var(--color-keyword-border);
+    background-color: var(--color-keyword-bg);
+    color: var(--color-keyword-text);
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+    vertical-align: middle;
+  }
+
+  :global(.inline-keywords li:hover) {
+    background-color: var(--color-keyword-border);
+    transform: translateY(-1px);
+    cursor: default;
   }
 
   @media print {
-    .skills-grid { column-gap: var(--sp-4); row-gap: var(--sp-3); }
-    .skills-grid .skill-item {
-      display: flex;
-      flex-direction: column;
-      margin: 0;
-      padding: 0;
-      break-inside: avoid;
-      page-break-inside: avoid;
+    .skill-row {
+      margin-bottom: var(--sp-1_5);
+      line-height: 1.6;
     }
-  }
 
-  @media screen and (max-width: 479px) {
-    .skills-grid { grid-template-columns: 1fr; }
-  }
-
-  @media screen and (min-width: 480px) and (max-width: 601px) {
-    .skills-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    :global(.inline-keywords li) {
+      margin: 1px 3px 1px 0 !important;
+      padding: 1px 4px;
+      font-size: var(--fs-fine);
+      border: 1px solid var(--color-keyword-border);
+      border-radius: 3px;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+      transform: none;
+      transition: none;
+    }
   }
 </style>
