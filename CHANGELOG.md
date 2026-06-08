@@ -1,3 +1,10 @@
+## [3.3.8](https://github.com/Rat-S/jsonresume-theme-stackoverflow/compare/v3.3.7...v3.3.8) (2026-06-08)
+
+
+### Bug Fixes
+
+* resolve crash on missing skill keywords and update snapshots ([231450e](https://github.com/Rat-S/jsonresume-theme-stackoverflow/commit/231450eccbd6c5c0bff8669c9336070f1172c429))
+
 ## [3.3.7](https://github.com/Rat-S/jsonresume-theme-stackoverflow/compare/v3.3.6...v3.3.7) (2026-06-05)
 
 
