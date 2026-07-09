@@ -33,9 +33,27 @@
   };
 
   const network = spaceToDash(profile.network);
-  const lightColor = brandColors[network] || 'inherit';
+  const lowercaseNetwork = network.toLowerCase();
+
+  // Custom non-brand networks mapping
+  const isCustomNetwork = ['interactive-resume', 'interactive', 'portfolio', 'globe', 'website', 'personal-website'].includes(lowercaseNetwork);
+  const prefix = isCustomNetwork ? 'fa-solid' : FA_BRAND_PREFIX;
+  const iconName = isCustomNetwork 
+    ? (lowercaseNetwork === 'interactive-resume' ? 'fa-laptop-code' : 'fa-globe') 
+    : `fa-${network}`;
+  const iconClass = `${prefix} ${iconName}`;
+
+  // Custom colors for non-brand items
+  const customColors = {
+    'interactive-resume': 'var(--color-accent)',
+    'portfolio': 'var(--color-accent)',
+    'globe': 'var(--color-accent)',
+    'website': 'var(--color-accent)',
+    'personal-website': 'var(--color-accent)',
+  };
+
+  const lightColor = customColors[lowercaseNetwork] || brandColors[network] || 'inherit';
   const darkColor = darkBrandColors[network] || lightColor;
-  const iconClass = `${FA_BRAND_PREFIX} fa-${network}`;
 
   // Helper to clean up the URL (e.g. remove protocol and www.)
   function cleanUrl(url) {
@@ -47,7 +65,7 @@
 </script>
 
 {#if profile.network}
-  <div class="item">
+  <div class="item" class:highlighted={lowercaseNetwork === 'interactive-resume'}>
     <div class="username">
       <span class="{iconClass} social" style="--brand-light: {lightColor}; --brand-dark: {darkColor}"></span>
       {#if profile.url}
@@ -72,12 +90,16 @@
   .item {
     display: inline-block;
     padding: 3px 8px;
-    margin-top: var(--sp-1);
-    margin-right: 6px;
     font-size: var(--fs-meta);
     line-height: var(--lh-snug);
     background-color: var(--color-background-alt);
     border-radius: 4px;
+    border: 1px solid transparent;
+  }
+
+  .item.highlighted {
+    background-color: var(--color-keyword-bg);
+    border-color: var(--color-accent);
   }
 
   .social {
@@ -97,6 +119,10 @@
       background-color: var(--color-background-alt) !important;
       print-color-adjust: exact;
       -webkit-print-color-adjust: exact;
+    }
+    .item.highlighted {
+      background-color: var(--color-keyword-bg) !important;
+      border-color: var(--color-accent) !important;
     }
     .social {
       color: var(--brand-light) !important;

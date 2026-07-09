@@ -202,7 +202,7 @@ export function render(resume, options) {
 </html>\`.replace('__LANG__', language);
 }
 
-const marginValue = '0.8 cm';
+const marginValue = '0.6 cm';
 export const pdfRenderOptions = {
   margin: {
     top: marginValue,

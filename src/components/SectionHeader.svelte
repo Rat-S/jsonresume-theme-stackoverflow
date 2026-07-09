@@ -53,7 +53,7 @@
   }
 
   @media print {
-    .section { margin-bottom: var(--sp-4); padding: 0; }
+    .section { margin-bottom: var(--sp-2); padding: 0; }
     header {
       margin-bottom: var(--sp-2);
       break-after: avoid;

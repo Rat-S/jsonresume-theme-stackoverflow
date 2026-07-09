@@ -165,7 +165,7 @@
 
   @media print {
     .timeline-item {
-      margin-top: var(--sp-3);
+      margin-top: var(--sp-2);
       break-inside: auto;
       page-break-inside: auto;
     }

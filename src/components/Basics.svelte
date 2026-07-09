@@ -1,6 +1,5 @@
 <script>
   import { t } from '../utils/helpers.ts';
-  import ContactInfo from './ContactInfo.svelte';
   import SocialProfile from './SocialProfile.svelte';
   import SectionHeader from './SectionHeader.svelte';
   import BirthDate from './BirthDate.svelte';
@@ -31,28 +30,49 @@
         <h2 class="label">{basics.label}</h2>
       </div>
     {:else}
-      <div>
+      <div class="title-container">
         <h1 class="name">{basics.name}</h1>
-        <h2 class="label">{basics.label}</h2>
+        {#if basics.label}
+          <span class="separator">|</span>
+          <h2 class="label">{basics.label}</h2>
+        {/if}
       </div>
     {/if}
 
     <BirthDate birth={basics.birth} />
 
-    <ContactInfo 
-      website={basics.url || basics.website} 
-      email={basics.email} 
-      phone={basics.phone} 
-      location={formatLocation(basics.location)} 
-    />
-
-    {#if basics.profiles?.length}
-      <nav class="profiles" aria-label="Social profiles">
+    <div class="contact-bar">
+      {#if basics.profiles?.length}
         {#each basics.profiles as profile}
           <SocialProfile {profile} />
         {/each}
-      </nav>
-    {/if}
+      {/if}
+      {#if basics.email}
+        <div class="contact-item">
+          <span class="fa-regular fa-envelope icon"></span>
+          <a class="hide-href-print" href="mailto:{basics.email}">{basics.email}</a>
+        </div>
+      {/if}
+      {#if basics.phone}
+        <div class="contact-item">
+          <span class="fa-solid fa-mobile-screen-button icon"></span>
+          <a class="hide-href-print" href="tel:{basics.phone}">{basics.phone}</a>
+        </div>
+      {/if}
+      {#if basics.location}
+        <div class="contact-item">
+          <span class="fa-solid fa-location-dot icon"></span>
+          <span>{formatLocation(basics.location)}</span>
+        </div>
+      {/if}
+      {#if basics.url || basics.website}
+        {@const site = basics.url || basics.website}
+        <div class="contact-item">
+          <span class="fa-solid fa-up-right-from-square icon"></span>
+          <a class="hide-href-print" target="_blank" href={site}>{site}</a>
+        </div>
+      {/if}
+    </div>
   </header>
 
   {#if basics.summary}
@@ -67,6 +87,20 @@
 <style>
   .header {
     margin-bottom: var(--sp-4);
+  }
+
+  .title-container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: var(--sp-2);
+  }
+
+  .separator {
+    font-size: var(--fs-name);
+    color: var(--color-border-light);
+    font-weight: 200;
+    user-select: none;
   }
 
   .name {
@@ -86,37 +120,59 @@
     margin-bottom: var(--sp-3);
   }
 
+  .title-container .label {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   .image {
     width: 11em;
     float: right;
     border-radius: 4px;
   }
 
-  .profiles {
+  .contact-bar {
     display: flex;
     flex-flow: row wrap;
     justify-content: flex-start;
     margin-top: var(--sp-2);
-    gap: var(--sp-1) 0;
+    gap: 4px 6px;
+  }
+
+  .contact-item {
+    display: inline-block;
+    padding: 3px 8px;
+    font-size: var(--fs-meta);
+    line-height: var(--lh-snug);
+    color: var(--color-text);
+    background-color: var(--color-background-alt);
+    border-radius: 4px;
+  }
+
+  .icon {
+    margin-right: 0.4em;
+    color: var(--color-text-secondary);
   }
 
   @media print {
-    .header { margin-bottom: var(--sp-3); }
-    .profiles :global(a:not(.hide-href-print))::after {
-      content: " · " attr(href);
-      font-size: var(--fs-fine);
-      color: var(--color-text-muted);
-      font-weight: 400;
-      margin-left: 0.2em;
+    .header { margin-bottom: var(--sp-2); }
+    .contact-item {
+      background-color: var(--color-background-alt) !important;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
     }
-    .profiles .url :global(.show-only-url-print) { display: none; }
-    .profiles .url :global(a)::after { content: attr(href); }
-    .profiles :global(.item) { padding: 0; }
     .main-summary { padding: 0; background: transparent; }
   }
 
   @media screen and (max-width: 601px) {
-    .header .profiles, .header :global(.contact) { flex-wrap: wrap; }
+    .separator {
+      display: none;
+    }
+    .title-container {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--sp-1);
+    }
     .name { font-size: 1.857rem; }
     .label { font-size: 1.286rem; }
     .image { float: none; display: block; margin: 0 auto 1rem; width: 8em; }

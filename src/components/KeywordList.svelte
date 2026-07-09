@@ -38,7 +38,7 @@
   }
 
   @media print {
-    ul { margin: var(--sp-2) 0 0 0; }
+    ul { margin: var(--sp-1) 0 0 0; }
     li {
       display: inline-block;
       margin: 2px 4px 2px 0;
