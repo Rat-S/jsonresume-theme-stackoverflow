@@ -5,7 +5,6 @@
 
 [![npm version](https://img.shields.io/npm/v/jsonresume-theme-folio)](https://www.npmjs.com/package/jsonresume-theme-folio)
 [![license](https://img.shields.io/npm/l/jsonresume-theme-folio)](https://github.com/Rat-S/jsonresume-theme-folio/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/Rat-S/jsonresume-theme-folio)](https://github.com/Rat-S/jsonresume-theme-folio)
 
 ---
 
@@ -67,12 +66,12 @@ const html = theme.render(resume);
 
 In addition to standard brand icons (LinkedIn, GitHub, Twitter, etc.), this theme supports custom non-brand networks with solid icons:
 
-| Network value | Icon | Style |
-|---|---|---|
+| Network value        | Icon                      | Style                                       |
+| -------------------- | ------------------------- | ------------------------------------------- |
 | `interactive-resume` | `fa-solid fa-laptop-code` | ✨ Highlighted (accent border + background) |
-| `portfolio` | `fa-solid fa-globe` | Accent color |
-| `globe` | `fa-solid fa-globe` | Accent color |
-| `website` | `fa-solid fa-globe` | Accent color |
+| `portfolio`          | `fa-solid fa-globe`       | Accent color                                |
+| `globe`              | `fa-solid fa-globe`       | Accent color                                |
+| `website`            | `fa-solid fa-globe`       | Accent color                                |
 
 Example in `resume.json`:
 
@@ -194,4 +193,4 @@ MIT
 
 ---
 
-> Originally inspired by [phoinixi/jsonresume-theme-stackoverflow](https://github.com/phoinixi/jsonresume-theme-stackoverflow).
+> Originally forked from the [phoinixi/jsonresume-theme-stackoverflow](https://github.com/phoinixi/jsonresume-theme-stackoverflow).
