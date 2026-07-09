@@ -1,3 +1,10 @@
+# [3.4.0](https://github.com/Rat-S/jsonresume-theme-stackoverflow/compare/v3.3.8...v3.4.0) (2026-07-09)
+
+
+### Features
+
+* compact header layout with inline name/label, merged contact bar, and interactive-resume network highlight ([96320d5](https://github.com/Rat-S/jsonresume-theme-stackoverflow/commit/96320d5bb6dacc75acbfe6c3501e56f901e0a867))
+
 ## [3.3.8](https://github.com/Rat-S/jsonresume-theme-stackoverflow/compare/v3.3.7...v3.3.8) (2026-06-08)
 
 
