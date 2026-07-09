@@ -1,56 +1,58 @@
-# @deadrat/jsonresume-theme-stackoverflow
+# jsonresume-theme-folio
 
-> ⚠️ **Note:** This is a customized, private fork of the original theme maintained. (It specifically contains custom typography adjustments and tailored ordering suited to my resume). Most users should check out and use the original, excellent upstream repository at [phoinixi/jsonresume-theme-stackoverflow](https://github.com/phoinixi/jsonresume-theme-stackoverflow).
+> A compact, print-optimized [JSON Resume](https://jsonresume.org/) theme for professionals.
+> Clean inline header, unified contact bar, custom network highlights, and PDF-first layout.
 
-> 🚀 A Svelte-powered Stack Overflow theme for [JSON Resume](https://jsonresume.org/)
+[![npm version](https://img.shields.io/npm/v/jsonresume-theme-folio)](https://www.npmjs.com/package/jsonresume-theme-folio)
+[![license](https://img.shields.io/npm/l/jsonresume-theme-folio)](https://github.com/Rat-S/jsonresume-theme-folio/blob/main/LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/Rat-S/jsonresume-theme-folio)](https://github.com/Rat-S/jsonresume-theme-folio)
 
-[![npm version](https://img.shields.io/npm/v/@deadrat/jsonresume-theme-stackoverflow)](https://www.npmjs.com/package/@deadrat/jsonresume-theme-stackoverflow)
-[![license](https://img.shields.io/npm/l/@deadrat/jsonresume-theme-stackoverflow)](https://github.com/Rat-S/jsonresume-theme-stackoverflow/blob/main/LICENSE)
-[![GitHub stars](https://img.shields.io/github/stars/Rat-S/jsonresume-theme-stackoverflow)](https://github.com/Rat-S/jsonresume-theme-stackoverflow)
-
-## 🔗 Related
-
-- **[resuml CLI](https://github.com/phoinixi/resuml)** — Use with resuml CLI for building, previewing, and exporting resumes
-- **[jsonresume-theme-react](https://github.com/phoinixi/jsonresume-theme-react)** — React-based JSON Resume theme
-- **[JSON Resume](https://jsonresume.org)** — The open standard for resume data
+---
 
 ## ✨ Features
 
-- **Svelte SSR** — Server-side rendered with Svelte 5 for fast, clean HTML output
+- **Compact header** — Name and job title inline on one line, contact details and social profiles in a unified flex row
+- **Custom network highlights** — Supports non-brand networks like `interactive-resume` with accent-color pill highlighting
+- **PDF-first** — Tight print margins and `print-color-adjust` rules for crisp Puppeteer/PDF exports
+- **Svelte SSR** — Server-side rendered with Svelte 5 for clean, zero-JS HTML output
 - **Dark mode** — Automatic light/dark theme via `prefers-color-scheme`
 - **Internationalization** — 12 languages supported out of the box
 - **Customizable themes** — Override colors and fonts via `resume.json` meta field
 - **Section ordering** — Reorder resume sections via `meta.theme.sectionOrder`
 - **Override CSS** — Drop in an `override.css` for full control
-- **PDF-ready** — Built-in PDF render options with sensible margins
-- **Zero runtime JS** — Pure HTML + CSS output, no client-side JavaScript
 
-## 📸 Screenshots
-
-|                                                  Light Mode                                                  |                                                 Dark Mode                                                  |
-| :----------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------: |
-| ![Light mode](https://raw.githubusercontent.com/phoinixi/jsonresume-theme-stackoverflow/main/docs/light.png) | ![Dark mode](https://raw.githubusercontent.com/phoinixi/jsonresume-theme-stackoverflow/main/docs/dark.png) |
+---
 
 ## 📦 Installation
 
 ```bash
-npm install @deadrat/jsonresume-theme-stackoverflow
+npm install jsonresume-theme-folio
 ```
 
-### With resuml (recommended)
+Point your `resume.json` at the theme:
+
+```json
+{
+  "meta": {
+    "theme": "jsonresume-theme-folio"
+  }
+}
+```
+
+### With `resumed` (recommended)
 
 ```bash
-npm install -g resuml
-resuml init                          # Create a resume.yaml
-resuml build -t stackoverflow        # Build HTML
-resuml pdf -t stackoverflow          # Export PDF
-resuml serve -t stackoverflow        # Live preview
+# Render HTML
+npx resumed render resume.json --theme jsonresume-theme-folio -o resume.html
+
+# Export PDF (use --no-sandbox in CI/containerized environments)
+npx resumed export resume.json --theme jsonresume-theme-folio -o resume.pdf --puppeteer-arg=--no-sandbox
 ```
 
 ### Programmatic Usage
 
 ```js
-const theme = require("jsonresume-theme-stackoverflow");
+const theme = require("jsonresume-theme-folio");
 const resume = require("./resume.json");
 
 // Optional: set language (default: "en-gb")
@@ -59,28 +61,36 @@ theme.changeLanguage("de");
 const html = theme.render(resume);
 ```
 
-## 🌍 Supported Languages
+---
 
-| Code           | Language               |
-| -------------- | ---------------------- |
-| `en-gb` / `en` | English (default)      |
-| `de`           | German / Deutsch       |
-| `fr`           | French / Français      |
-| `es`           | Spanish / Español      |
-| `it`           | Italian / Italiano     |
-| `pt`           | Portuguese / Português |
-| `zh`           | Chinese / 中文         |
-| `ja`           | Japanese / 日本語      |
-| `ko`           | Korean / 한국어        |
-| `nl`           | Dutch / Nederlands     |
-| `pl`           | Polish / Polski        |
-| `ru`           | Russian / Русский      |
+## 🎨 Custom Network Highlights
 
-```js
-const theme = require("jsonresume-theme-stackoverflow");
-theme.changeLanguage("fr"); // Set before calling render()
-const html = theme.render(resume);
+In addition to standard brand icons (LinkedIn, GitHub, Twitter, etc.), this theme supports custom non-brand networks with solid icons:
+
+| Network value | Icon | Style |
+|---|---|---|
+| `interactive-resume` | `fa-solid fa-laptop-code` | ✨ Highlighted (accent border + background) |
+| `portfolio` | `fa-solid fa-globe` | Accent color |
+| `globe` | `fa-solid fa-globe` | Accent color |
+| `website` | `fa-solid fa-globe` | Accent color |
+
+Example in `resume.json`:
+
+```json
+{
+  "basics": {
+    "profiles": [
+      {
+        "network": "interactive-resume",
+        "username": "My Interactive Resume",
+        "url": "https://yoursite.com/"
+      }
+    ]
+  }
+}
 ```
+
+---
 
 ## 🎨 Theme Customization
 
@@ -121,6 +131,8 @@ Customize colors and fonts by adding a `theme` object inside `meta` in your `res
 
 For full CSS control, create an `override.css` file alongside your resume. The theme automatically loads it via `<link rel="stylesheet" href="./override.css">`.
 
+---
+
 ## 📑 Section Ordering
 
 Control the order of resume sections by adding a `sectionOrder` array to `meta.theme`:
@@ -143,25 +155,43 @@ Control the order of resume sections by adding a `sectionOrder` array to `meta.t
 
 Only sections listed in `sectionOrder` will be rendered. Omit sections to hide them, or include all for full control over ordering.
 
+---
+
+## 🌍 Supported Languages
+
+| Code           | Language               |
+| -------------- | ---------------------- |
+| `en-gb` / `en` | English (default)      |
+| `de`           | German / Deutsch       |
+| `fr`           | French / Français      |
+| `es`           | Spanish / Español      |
+| `it`           | Italian / Italiano     |
+| `pt`           | Portuguese / Português |
+| `zh`           | Chinese / 中文         |
+| `ja`           | Japanese / 日本語      |
+| `ko`           | Korean / 한국어        |
+| `nl`           | Dutch / Nederlands     |
+| `pl`           | Polish / Polski        |
+| `ru`           | Russian / Русский      |
+
+---
+
 ## 🛠 Development
 
 ```bash
-git clone https://github.com/phoinixi/jsonresume-theme-stackoverflow.git
-cd jsonresume-theme-stackoverflow
+git clone https://github.com/Rat-S/jsonresume-theme-folio.git
+cd jsonresume-theme-folio
 npm install
 npm run build
 npm test
 ```
 
-### Generating Screenshots
-
-Screenshots require puppeteer (not included in devDependencies to keep installs lean):
-
-```bash
-npm install puppeteer
-node docs/screenshot.js
-```
+---
 
 ## 📄 License
 
 MIT
+
+---
+
+> Originally inspired by [phoinixi/jsonresume-theme-stackoverflow](https://github.com/phoinixi/jsonresume-theme-stackoverflow).

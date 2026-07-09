@@ -1,8 +1,8 @@
 {
-  "name": "@deadrat/jsonresume-theme-stackoverflow",
-  "version": "3.4.0",
-  "description": "Stack Overflow theme for JSON Resume — Svelte SSR (deadrat fork)",
-  "author": "Francesco Esposito (fork by deadrat)",
+  "name": "jsonresume-theme-folio",
+  "version": "1.0.0",
+  "description": "A compact, print-optimized JSON Resume theme for professionals. Clean inline header, unified contact bar, and PDF-first layout.",
+  "author": "Jay S (deadrat)",
   "scripts": {
     "build": "node build.js",
     "test": "npm run build && jest --coverage --verbose",
@@ -10,8 +10,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rat-S/jsonresume-theme-stackoverflow.git"
+    "url": "git+https://github.com/Rat-S/jsonresume-theme-folio.git"
   },
+  "homepage": "https://github.com/Rat-S/jsonresume-theme-folio#readme",
+  "bugs": {
+    "url": "https://github.com/Rat-S/jsonresume-theme-folio/issues"
+  },
+  "keywords": ["jsonresume", "resume", "theme", "pdf", "print", "professional", "compact"],
   "license": "MIT",
   "publishConfig": {
     "access": "public"

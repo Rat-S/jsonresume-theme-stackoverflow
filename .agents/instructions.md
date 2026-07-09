@@ -31,12 +31,12 @@ Never output rendered PDFs, HTML, or PNG files directly in the root directory. U
 
 * **Render HTML**:
   ```bash
-  npx resumed render temp/general-ally-tech.json --theme @deadrat/jsonresume-theme-stackoverflow -o temp/general-ally-tech-v<N>.html
+  npx resumed render temp/general-ally-tech.json --theme jsonresume-theme-folio -o temp/general-ally-tech-v<N>.html
   ```
 * **Export PDF**:
   Always use the `--puppeteer-arg=--no-sandbox` flag to ensure Puppeteer runs correctly in all environment environments:
   ```bash
-  npx resumed export temp/general-ally-tech.json --theme @deadrat/jsonresume-theme-stackoverflow -o temp/general-ally-tech-v<N>.pdf --puppeteer-arg=--no-sandbox
+  npx resumed export temp/general-ally-tech.json --theme jsonresume-theme-folio -o temp/general-ally-tech-v<N>.pdf --puppeteer-arg=--no-sandbox
   ```
 * **Convert PDF to PNG (for visual inspection)**:
   ```bash
