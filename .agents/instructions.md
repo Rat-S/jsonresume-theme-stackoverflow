@@ -1,20 +1,25 @@
-# Agent Instructions: JSON Resume Theme Stackoverflow
+# Agent Instructions: jsonresume-theme-folio
 
-This document provides context, workflow rules, and testing guidelines for AI agents working on this repository (`jsonresume-theme-stackoverflow`).
+This document provides context, workflow rules, and testing guidelines for AI agents working on this repository (`jsonresume-theme-folio`).
+
+> **Package**: [`jsonresume-theme-folio`](https://www.npmjs.com/package/jsonresume-theme-folio) on npm
+> **GitHub**: [`Rat-S/jsonresume-theme-folio`](https://github.com/Rat-S/jsonresume-theme-folio)
+> **History**: Originally forked from [`phoinixi/jsonresume-theme-stackoverflow`](https://github.com/phoinixi/jsonresume-theme-stackoverflow), now an independent theme.
 
 ---
 
 ## 📋 Context & Project Rules
 
-1. **Primary Focus**: The goal of this fork is to optimize the theme for **PDF rendering/screen viewing** (via Puppeteer/resumed), maximizing layout density and professional aesthetics.
+1. **Primary Focus**: Optimize the theme for **PDF rendering/screen viewing** (via Puppeteer/resumed), maximizing layout density and professional aesthetics.
 2. **Recent Redesigns**:
-   * **Certificates**: Transitioned from a pilled cloud layout to a clean **2-column plain text bullet list** (`•`).
-   * **Skills**: Transitioned from blocky pills/badges to a clean **2-column inline format** (`Category Name: Keyword1, Keyword2`).
-   * **Basics & Contact Info**: 
-     * Location has been moved inline on the same line as the email and phone inside the contact bar.
-     * All contact items and social profiles are styled as **borderless pills/badges** with a soft background (`var(--color-background-alt)`).
-     * Social profiles display cleaned URLs (e.g., `Jay S (linkedin.com/in/deadrat)`) rather than appending raw full links in print mode.
-     * Print-color-adjust rules (`print-color-adjust: exact`) are enabled to ensure pill backgrounds render correctly in PDF exports.
+   * **Header**: Name and job label are on the **same line** separated by a `|` pipe separator. On screens < 601px they stack vertically.
+   * **Contact Bar**: Email, phone, location, website, and **all social profiles** are merged into a single `.contact-bar` flex row. Social profiles appear **first** in the row.
+   * **Custom Networks**: Non-brand social networks like `interactive-resume`, `portfolio`, `globe`, and `website` are supported with `fa-solid` icons. The `interactive-resume` network gets a highlighted pill (accent border + background).
+   * **Certificates**: 2-column plain text bullet list (`•`) — no pills.
+   * **Skills**: 2-column inline format (`Category Name: Keyword1, Keyword2`) — no pills.
+   * **Print Density**: Reduced margins in `SectionHeader.svelte`, `TimelineItem.svelte`, `KeywordList.svelte`, and PDF margins in `build.js` (`0.6cm`) for tight 3-page layouts.
+   * **Social Profile URLs**: Cleaned display (e.g., `Jay S (linkedin.com/in/deadrat)`) — no raw full links in print mode.
+   * **Print Color**: `print-color-adjust: exact` enabled so pill backgrounds render correctly in PDF exports.
 
 ---
 
@@ -31,16 +36,16 @@ Never output rendered PDFs, HTML, or PNG files directly in the root directory. U
 
 * **Render HTML**:
   ```bash
-  npx resumed render temp/general-ally-tech.json --theme jsonresume-theme-folio -o temp/general-ally-tech-v<N>.html
+  npx resumed render temp/<resume>.json --theme jsonresume-theme-folio -o temp/<resume>-v<N>.html
   ```
 * **Export PDF**:
-  Always use the `--puppeteer-arg=--no-sandbox` flag to ensure Puppeteer runs correctly in all environment environments:
+  Always use the `--puppeteer-arg=--no-sandbox` flag to ensure Puppeteer runs correctly in all environments:
   ```bash
-  npx resumed export temp/general-ally-tech.json --theme jsonresume-theme-folio -o temp/general-ally-tech-v<N>.pdf --puppeteer-arg=--no-sandbox
+  npx resumed export temp/<resume>.json --theme jsonresume-theme-folio -o temp/<resume>-v<N>.pdf --puppeteer-arg=--no-sandbox
   ```
 * **Convert PDF to PNG (for visual inspection)**:
   ```bash
-  pdftoppm -png -r 150 temp/general-ally-tech-v<N>.pdf temp/general-ally-tech-page-v<N>
+  pdftoppm -png -r 150 temp/<resume>-v<N>.pdf temp/<resume>-page-v<N>
   ```
 
 ---
@@ -55,9 +60,25 @@ The repository has automated tests checking HTML structures, section rendering, 
   ```
 * **Snapshot Failures**:
   If Svelte markup, CSS class names, or component layouts change, the snapshot assertion tests in `test/SimpleTests.test.js` will fail.
-  Update the Jest snapshots with the `-u` flag:
+  Update the Jest snapshots with:
   ```bash
-  npx jest -u
+  npm run updateTestSnapshots
   ```
 * **Git Status**:
-  Ensure that you build (`npm run build`), update snapshots (`npx jest -u`), and run the full suite successfully before committing and pushing changes.
+  Ensure that you build (`npm run build`), update snapshots (`npm run updateTestSnapshots`), and run the full suite successfully before committing and pushing.
+
+---
+
+## 🚀 Release Workflow
+
+Releases are **fully automated** via GitHub Actions + `semantic-release`.
+
+* **How it works**: Push a commit to `main` with a [Conventional Commit](https://www.conventionalcommits.org/) message. CI runs tests, builds, and publishes to npm automatically.
+* **Version bump rules**:
+  | Commit prefix | Version bump | Example |
+  |---|---|---|
+  | `fix:` | Patch (`1.0.0` → `1.0.1`) | Bug fixes |
+  | `feat:` | Minor (`1.0.0` → `1.1.0`) | New features |
+  | `BREAKING CHANGE:` | Major (`1.0.0` → `2.0.0`) | Breaking API change |
+  | `chore:`, `docs:`, `style:` | None | No release triggered |
+* **npm auth**: Uses **OIDC Trusted Publishing** — no `NPM_TOKEN` secret needed. Configured at npmjs.com/package/jsonresume-theme-folio → Settings → Trusted Publishers.
