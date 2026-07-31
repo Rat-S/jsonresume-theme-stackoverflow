@@ -180,13 +180,6 @@
     color: var(--color-link);
   }
 
-  .title-icon {
-    font-size: 0.75em;
-    margin-left: var(--sp-1);
-    color: var(--color-link);
-    font-weight: normal;
-  }
-
   @media print {
     .timeline-item {
       margin-top: var(--sp-2);
@@ -199,7 +192,6 @@
     }
     .company a,
     .title-link { color: var(--color-text); text-decoration: none; }
-    .title-icon { display: none; }
     .company::before,
     .institution::before,
     .organization::before,
