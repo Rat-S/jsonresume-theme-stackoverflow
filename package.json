@@ -1,6 +1,6 @@
 {
   "name": "jsonresume-theme-folio",
-  "version": "1.0.0",
+  "version": "3.5.0",
   "description": "A compact, print-optimized JSON Resume theme for professionals. Clean inline header, unified contact bar, and PDF-first layout.",
   "author": "Jay S (deadrat)",
   "scripts": {
@@ -16,7 +16,15 @@
   "bugs": {
     "url": "https://github.com/Rat-S/jsonresume-theme-folio/issues"
   },
-  "keywords": ["jsonresume", "resume", "theme", "pdf", "print", "professional", "compact"],
+  "keywords": [
+    "jsonresume",
+    "resume",
+    "theme",
+    "pdf",
+    "print",
+    "professional",
+    "compact"
+  ],
   "license": "MIT",
   "publishConfig": {
     "access": "public"

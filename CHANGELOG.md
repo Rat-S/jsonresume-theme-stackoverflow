@@ -1,3 +1,10 @@
+# [3.5.0](https://github.com/Rat-S/jsonresume-theme-folio/compare/v3.4.0...v3.5.0) (2026-07-31)
+
+
+### Features
+
+* refactor project titles into clickable links within TimelineItem component ([27b9cd1](https://github.com/Rat-S/jsonresume-theme-folio/commit/27b9cd14a3c4d82a6e99067516886b4c5ebb5911))
+
 # [3.4.0](https://github.com/Rat-S/jsonresume-theme-stackoverflow/compare/v3.3.8...v3.4.0) (2026-07-09)
 
 
