@@ -156,25 +156,6 @@ Only sections listed in `sectionOrder` will be rendered. Omit sections to hide t
 
 ---
 
-## 🌍 Supported Languages
-
-| Code           | Language               |
-| -------------- | ---------------------- |
-| `en-gb` / `en` | English (default)      |
-| `de`           | German / Deutsch       |
-| `fr`           | French / Français      |
-| `es`           | Spanish / Español      |
-| `it`           | Italian / Italiano     |
-| `pt`           | Portuguese / Português |
-| `zh`           | Chinese / 中文         |
-| `ja`           | Japanese / 日本語      |
-| `ko`           | Korean / 한국어        |
-| `nl`           | Dutch / Nederlands     |
-| `pl`           | Polish / Polski        |
-| `ru`           | Russian / Русский      |
-
----
-
 ## 🛠 Development
 
 ```bash
@@ -184,12 +165,6 @@ npm install
 npm run build
 npm test
 ```
-
----
-
-## 📄 License
-
-MIT
 
 ---
 
