@@ -6,6 +6,7 @@
 
   let {
     title = '',
+    titleUrl = '',
     subtitle = '',
     subtitleClass = 'company',
     url = '',
@@ -30,7 +31,13 @@
     {/if}
     <div class="header-left">
       {#if title}
-        <div class="position">{title}</div>
+        <div class="position">
+          {#if titleUrl}
+            <a target="_blank" href={titleUrl} class="title-link">{title}</a>
+          {:else}
+            {title}
+          {/if}
+        </div>
       {/if}
       {#if subtitle}
         <div class={subtitleClass}>
@@ -163,6 +170,23 @@
     content: "at ";
   }
 
+  .title-link {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .title-link:hover {
+    text-decoration: underline;
+    color: var(--color-link);
+  }
+
+  .title-icon {
+    font-size: 0.75em;
+    margin-left: var(--sp-1);
+    color: var(--color-link);
+    font-weight: normal;
+  }
+
   @media print {
     .timeline-item {
       margin-top: var(--sp-2);
@@ -173,7 +197,9 @@
       break-after: avoid;
       page-break-after: avoid;
     }
-    .company a { color: var(--color-text); }
+    .company a,
+    .title-link { color: var(--color-text); text-decoration: none; }
+    .title-icon { display: none; }
     .company::before,
     .institution::before,
     .organization::before,

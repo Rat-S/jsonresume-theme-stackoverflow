@@ -12,6 +12,7 @@
       {#each projects as project}
         <TimelineItem
           title={project.name}
+          titleUrl={project.url}
           startDate={project.endDate ? project.startDate : undefined}
           endDate={project.endDate}
           singleDate={project.endDate ? undefined : project.startDate}
@@ -20,29 +21,8 @@
           highlights={project.highlights}
           keywords={project.keywords}
           location={project.location}
-        >
-          {#if project.url}
-            <span class="website">
-              <span class="fa-solid fa-up-right-from-square"></span>
-              <a target="_blank" href={project.url}>{project.url}</a>
-            </span>
-          {/if}
-        </TimelineItem>
+        />
       {/each}
     </section>
   </SectionHeader>
 {/if}
-
-<style>
-  .website {
-    display: block;
-    margin-top: var(--sp-2);
-    font-size: var(--fs-meta);
-    line-height: var(--lh-snug);
-  }
-
-  .website :global(.fa-up-right-from-square) {
-    margin-right: 0.4em;
-    color: var(--color-text-secondary);
-  }
-</style>
