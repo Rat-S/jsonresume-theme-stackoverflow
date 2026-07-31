@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Rat-S/jsonresume-theme-folio/compare/v1.0.0...v1.1.0) (2026-07-31)
+
+
+### Features
+
+* hyperlink project titles directly within TimelineItem component ([608fe84](https://github.com/Rat-S/jsonresume-theme-folio/commit/608fe842d71ce1e805ad87c64a0f622718d6ac0c))
+
 # [3.5.0](https://github.com/Rat-S/jsonresume-theme-folio/compare/v3.4.0...v3.5.0) (2026-07-31)
 
 
