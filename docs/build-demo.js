@@ -78,7 +78,7 @@ const landing = `<!doctype html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>jsonresume-theme-stackoverflow — Demo</title>
+  <title>jsonresume-theme-folio — Demo</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -109,25 +109,24 @@ const landing = `<!doctype html>
 </head>
 <body>
   <div class="hero">
-    <h1>jsonresume-theme-<span>stackoverflow</span></h1>
-    <p>A Stack Overflow inspired theme for JSON Resume. Built with Svelte SSR, featuring dark mode, i18n, and smart skill level detection.</p>
+    <h1>jsonresume-theme-<span>folio</span></h1>
+    <p>A compact, print-optimized JSON Resume theme for professionals. Clean inline header, unified contact bar, and PDF-first layout.</p>
     <div class="badges">
-      <img src="https://img.shields.io/npm/v/jsonresume-theme-stackoverflow.svg?style=flat-square" alt="npm version">
-      <img src="https://img.shields.io/npm/dm/jsonresume-theme-stackoverflow.svg?style=flat-square" alt="npm downloads">
-      <img src="https://img.shields.io/github/stars/phoinixi/jsonresume-theme-stackoverflow?style=flat-square" alt="GitHub stars">
-      <img src="https://img.shields.io/npm/l/jsonresume-theme-stackoverflow?style=flat-square" alt="License">
+      <img src="https://img.shields.io/npm/v/jsonresume-theme-folio.svg?style=flat-square" alt="npm version">
+      <img src="https://img.shields.io/npm/dm/jsonresume-theme-folio.svg?style=flat-square" alt="npm downloads">
+      <img src="https://img.shields.io/github/stars/Rat-S/jsonresume-theme-folio?style=flat-square" alt="GitHub stars">
+      <img src="https://img.shields.io/npm/l/jsonresume-theme-folio?style=flat-square" alt="License">
     </div>
     <div class="buttons">
-      <a href="https://github.com/phoinixi/jsonresume-theme-stackoverflow" class="btn btn-primary">⭐ GitHub</a>
-      <a href="https://www.npmjs.com/package/jsonresume-theme-stackoverflow" class="btn btn-secondary">📦 npm</a>
-      <a href="https://github.com/phoinixi/resuml" class="btn btn-secondary">🛠 Use with resuml</a>
+      <a href="https://github.com/Rat-S/jsonresume-theme-folio" class="btn btn-primary">⭐ GitHub</a>
+      <a href="https://www.npmjs.com/package/jsonresume-theme-folio" class="btn btn-secondary">📦 npm</a>
     </div>
   </div>
 
   <div class="features">
     <div class="feature">
-      <h3>⚡ Svelte SSR</h3>
-      <p>The only Svelte-powered JSON Resume theme. Server-side rendered for fast, clean HTML output.</p>
+      <h3>⚡ PDF & Print Optimized</h3>
+      <p>Compact layout density, tight margins, and PDF-first formatting for clean multi-page rendering.</p>
     </div>
     <div class="feature">
       <h3>🌙 Dark Mode</h3>
@@ -135,11 +134,11 @@ const landing = `<!doctype html>
     </div>
     <div class="feature">
       <h3>🌍 12 Languages</h3>
-      <p>Built-in i18n: EN, DE, FR, ES, IT, PT, ZH, JA, KO, NL, PL, RU. Smart level synonyms across languages.</p>
+      <p>Built-in i18n support across 12 languages with smart level detection.</p>
     </div>
     <div class="feature">
-      <h3>🎨 Customizable</h3>
-      <p>Full theme customization via meta.theme in your resume.json. Colors, fonts, everything.</p>
+      <h3>🎨 Modern Layout</h3>
+      <p>Clean inline header, unified contact bar, 2-column certificates and skills.</p>
     </div>
   </div>
 
@@ -152,9 +151,9 @@ const landing = `<!doctype html>
   </div>
 
   <footer>
-    Made with ❤️ by <a href="https://github.com/phoinixi">phoinixi</a> · 
-    Powered by <a href="https://jsonresume.org">JSON Resume</a> · 
-    CLI: <a href="https://github.com/phoinixi/resuml">resuml</a>
+    Made with ❤️ by <a href="https://github.com/deadrat">Jay S (deadrat)</a> · 
+    Originally forked from <a href="https://github.com/phoinixi/jsonresume-theme-stackoverflow">phoinixi/jsonresume-theme-stackoverflow</a> · 
+    Powered by <a href="https://jsonresume.org">JSON Resume</a>
   </footer>
 
   <script>

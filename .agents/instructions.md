@@ -81,3 +81,4 @@ Releases are **fully automated** via GitHub Actions + `semantic-release`.
   Maybe stick to SemVer ?
 
 - **npm auth**: Uses **OIDC Trusted Publishing** — no `NPM_TOKEN` secret needed. Configured at npmjs.com/package/jsonresume-theme-folio → Settings → Trusted Publishers.
+- **GitHub Pages Demo**: Running `node docs/build-demo.js` builds the demo landing page and theme previews to `docs/dist/`. GitHub Pages automatically deploys on pushes to `main`.
