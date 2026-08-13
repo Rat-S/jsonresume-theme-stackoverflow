@@ -67,9 +67,13 @@
   @media print {
     .skills-columns {
       column-gap: var(--sp-4);
+      break-inside: auto;
+      page-break-inside: auto;
     }
     .skill-row {
       margin-bottom: var(--sp-2);
+      break-inside: auto;
+      page-break-inside: auto;
     }
   }
 
