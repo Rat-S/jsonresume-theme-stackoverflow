@@ -10,11 +10,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Rat-S/jsonresume-theme-folio.git"
+    "url": "git+https://github.com/deadrat-in/jsonresume-theme-folio.git"
   },
-  "homepage": "https://github.com/Rat-S/jsonresume-theme-folio#readme",
+  "homepage": "https://github.com/deadrat-in/jsonresume-theme-folio#readme",
   "bugs": {
-    "url": "https://github.com/Rat-S/jsonresume-theme-folio/issues"
+    "url": "https://github.com/deadrat-in/jsonresume-theme-folio/issues"
   },
   "keywords": [
     "jsonresume",

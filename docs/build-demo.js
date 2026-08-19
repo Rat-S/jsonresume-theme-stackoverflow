@@ -2,20 +2,23 @@
  * Build demo page for GitHub Pages
  * Renders sample.resume.json using the theme
  */
-const renderer = require('../dist/index');
-const resume = require('./sample.resume.json');
-const fs = require('fs');
-const path = require('path');
+const renderer = require("../dist/index");
+const resume = require("./sample.resume.json");
+const fs = require("fs");
+const path = require("path");
 
-const outDir = path.join(__dirname, 'dist');
+const outDir = path.join(__dirname, "dist");
 if (!fs.existsSync(outDir)) fs.mkdirSync(outDir, { recursive: true });
 
 // Render the resume
 const html = renderer.render(resume);
 
 // Write the rendered resume — force light mode by overriding dark media query
-const faviconTag = '<link rel="icon" type="image/svg+xml" href="./favicon.svg">';
-const lightHtml = html.replace('</head>', `${faviconTag}<style>
+const faviconTag =
+  '<link rel="icon" type="image/svg+xml" href="./favicon.svg">';
+const lightHtml = html.replace(
+  "</head>",
+  `${faviconTag}<style>
 @media (prefers-color-scheme: dark) {
   :root {
     --color-text: #3d4767;
@@ -40,11 +43,14 @@ const lightHtml = html.replace('</head>', `${faviconTag}<style>
     --color-section-title-bg: #ffffff;
   }
 }
-</style></head>`);
-fs.writeFileSync(path.join(outDir, 'index.html'), lightHtml);
+</style></head>`,
+);
+fs.writeFileSync(path.join(outDir, "index.html"), lightHtml);
 
 // Dark mode: inject dark CSS vars directly (media query doesn't work reliably in iframes)
-const darkHtml = html.replace('</head>', `${faviconTag}<style>
+const darkHtml = html.replace(
+  "</head>",
+  `${faviconTag}<style>
 :root {
   --color-text: #d4d4d8;
   --color-text-secondary: #a1a1aa;
@@ -69,8 +75,9 @@ const darkHtml = html.replace('</head>', `${faviconTag}<style>
   color-scheme: dark;
 }
 </style>
-</head>`);
-fs.writeFileSync(path.join(outDir, 'dark.html'), darkHtml);
+</head>`,
+);
+fs.writeFileSync(path.join(outDir, "dark.html"), darkHtml);
 
 // Create a landing page
 const landing = `<!doctype html>
@@ -114,11 +121,11 @@ const landing = `<!doctype html>
     <div class="badges">
       <img src="https://img.shields.io/npm/v/jsonresume-theme-folio.svg?style=flat-square" alt="npm version">
       <img src="https://img.shields.io/npm/dm/jsonresume-theme-folio.svg?style=flat-square" alt="npm downloads">
-      <img src="https://img.shields.io/github/stars/Rat-S/jsonresume-theme-folio?style=flat-square" alt="GitHub stars">
+      <img src="https://img.shields.io/github/stars/deadrat-in/jsonresume-theme-folio?style=flat-square" alt="GitHub stars">
       <img src="https://img.shields.io/npm/l/jsonresume-theme-folio?style=flat-square" alt="License">
     </div>
     <div class="buttons">
-      <a href="https://github.com/Rat-S/jsonresume-theme-folio" class="btn btn-primary">⭐ GitHub</a>
+      <a href="https://github.com/deadrat-in/jsonresume-theme-folio" class="btn btn-primary">⭐ GitHub</a>
       <a href="https://www.npmjs.com/package/jsonresume-theme-folio" class="btn btn-secondary">📦 npm</a>
     </div>
   </div>
@@ -167,13 +174,16 @@ const landing = `<!doctype html>
 </body>
 </html>`;
 
-fs.writeFileSync(path.join(outDir, 'landing.html'), landing);
+fs.writeFileSync(path.join(outDir, "landing.html"), landing);
 
 // Copy light resume to resume.html, then overwrite index with landing
-fs.copyFileSync(path.join(outDir, 'index.html'), path.join(outDir, 'resume.html'));
-fs.writeFileSync(path.join(outDir, 'index.html'), landing);
+fs.copyFileSync(
+  path.join(outDir, "index.html"),
+  path.join(outDir, "resume.html"),
+);
+fs.writeFileSync(path.join(outDir, "index.html"), landing);
 
-console.log('✅ Demo built:');
-console.log('   docs/dist/index.html (landing page)');
-console.log('   docs/dist/resume.html (light theme)');
-console.log('   docs/dist/dark.html (dark theme)');
+console.log("✅ Demo built:");
+console.log("   docs/dist/index.html (landing page)");
+console.log("   docs/dist/resume.html (light theme)");
+console.log("   docs/dist/dark.html (dark theme)");

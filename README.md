@@ -4,7 +4,7 @@
 > Clean inline header, unified contact bar, custom network highlights, and PDF-first layout.
 
 [![npm version](https://img.shields.io/npm/v/jsonresume-theme-folio)](https://www.npmjs.com/package/jsonresume-theme-folio)
-[![license](https://img.shields.io/npm/l/jsonresume-theme-folio)](https://github.com/Rat-S/jsonresume-theme-folio/blob/main/LICENSE)
+[![license](https://img.shields.io/npm/l/jsonresume-theme-folio)](https://github.com/deadrat-in/jsonresume-theme-folio/blob/main/LICENSE)
 
 ---
 
@@ -159,7 +159,7 @@ Only sections listed in `sectionOrder` will be rendered. Omit sections to hide t
 ## 🛠 Development
 
 ```bash
-git clone https://github.com/Rat-S/jsonresume-theme-folio.git
+git clone https://github.com/deadrat-in/jsonresume-theme-folio.git
 cd jsonresume-theme-folio
 npm install
 npm run build
