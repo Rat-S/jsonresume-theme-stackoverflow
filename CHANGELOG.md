@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/deadrat-in/jsonresume-theme-folio/compare/v1.1.0...v1.2.0) (2026-08-20)
+
+
+### Features
+
+* add dynamic single-page auto-fit and export CLI ([8ae7a56](https://github.com/deadrat-in/jsonresume-theme-folio/commit/8ae7a5678efa423e4825d83536b0b83f7948eb8d))
+
 # [1.1.0](https://github.com/deadrat-in/jsonresume-theme-folio/compare/v1.0.0...v1.1.0) (2026-07-31)
 
 ### Features
