@@ -51,7 +51,7 @@ async function loadPuppeteer() {
   }
 }
 
-function parseDimensionToPx(dim, defaultPx = 907) {
+function parseDimensionToPx(dim, defaultPx = 915) {
   if (!dim) return defaultPx;
   const match = String(dim).trim().match(/^([0-9.]+)\s*(mm|cm|in|px|pt)?$/i);
   if (!match) return defaultPx;
@@ -128,10 +128,10 @@ function printHelp() {
 Usage: folio-export [resume.json] [output.pdf] [options]
 
 Options:
-  -s, --single-page       Render exact-height single-page PDF (zero bottom whitespace)
-  -m, --multi-page        Render standard multi-page PDF (default unless singlePage is set in JSON)
+  -s, --single-page       Render exact-height single-page PDF (default)
+  -m, --multi-page        Render standard multi-page PDF (A4 / Letter)
   -o, --output <file>     Output PDF filename (default: <filename>.pdf)
-  -w, --width <width>     Target page width (default: "240mm" for single-page)
+  -w, --width <width>     Target page width (default: "242mm")
   -h, --height <height>   Target page height (e.g. "330mm", "297mm")
   -f, --format <format>   Paper format (e.g. "A4", "Letter")
   --puppeteer-arg <arg>   Additional args to pass to Puppeteer launch
@@ -161,15 +161,16 @@ async function run() {
 
   const html = render(resume);
 
-  // Determine single page vs multi page
-  // Priority: CLI flag > resume.meta.singlePage > (resume.meta.pdfRenderOptions.height === 'auto') > default (false)
-  let isSinglePage = false;
-  if (cliOpts.singlePage !== null) {
+  // Determine single page vs multi page (folio-export defaults to single-page)
+  let isSinglePage = true;
+  if (cliOpts.multiPage) {
+    isSinglePage = false;
+  } else if (cliOpts.singlePage !== null) {
     isSinglePage = cliOpts.singlePage;
   } else if (resume.meta?.singlePage !== undefined) {
     isSinglePage = Boolean(resume.meta.singlePage);
-  } else if (resume.meta?.pdfRenderOptions?.height === 'auto') {
-    isSinglePage = true;
+  } else if (resume.meta?.multiPage) {
+    isSinglePage = false;
   }
 
   const puppeteer = await loadPuppeteer();
@@ -196,8 +197,10 @@ async function run() {
     let pdfBuffer;
 
     if (isSinglePage) {
-      const targetWidth = cliOpts.width || pdfOptions.width || '240mm';
-      const widthPx = parseDimensionToPx(targetWidth, 907);
+      // Default to 242mm width if not specified in CLI or resume meta
+      const defaultWidth = '242mm';
+      const targetWidth = cliOpts.width || pdfOptions.width || defaultWidth;
+      const widthPx = parseDimensionToPx(targetWidth, 915);
 
       // Set viewport width to match print width accurately
       await page.setViewport({ width: widthPx, height: 1200, deviceScaleFactor: 1 });
@@ -244,7 +247,7 @@ async function run() {
         attempts++;
       }
 
-      console.log(`\x1b[36mExporting guaranteed single-page PDF (width: ${pdfOptions.width}, exact height: ${heightPx}px)...\x1b[0m`);
+      console.log(`\x1b[36mExporting single-page PDF (width: ${pdfOptions.width}, exact height: ${heightPx}px)...\x1b[0m`);
     } else {
       await page.setContent(html, { waitUntil: 'networkidle0' });
       console.log(`\x1b[36mExporting multi-page PDF...\x1b[0m`);

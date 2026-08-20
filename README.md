@@ -40,25 +40,27 @@ Point your `resume.json` at the theme:
 
 ### 📄 Single-Page & Multi-Page PDF Export (`folio-export`)
 
-This theme bundles a dedicated PDF export CLI (`folio-export`) that dynamically measures the DOM height to produce a **continuous single-page PDF with zero trailing whitespace**, or standard multi-page documents:
+This theme bundles a dedicated PDF export CLI (`folio-export`) that dynamically measures the DOM height to produce a **continuous single-page PDF with zero trailing whitespace** by default (default width `242mm`):
 
 ```bash
-# 1. Export exact single page (auto-fits content height):
-npx folio-export resume.json -o resume.pdf --single-page
+# 1. Export exact single page (default, 242mm width, zero empty whitespace):
+npx folio-export resume.json -o resume.pdf
 
-# 2. Export standard multi-page (A4 / Letter):
-npx folio-export resume.json -o resume.pdf --multi-page --format A4
+# 2. Custom width single page:
+npx folio-export resume.json -w 260mm
+
+# 3. Export standard multi-page (A4 / Letter):
+npx folio-export resume.json --multi-page --format A4
 ```
 
-You can also enable single-page mode directly in your `resume.json`:
+You can also customize width or options directly in your `resume.json`:
 
 ```json
 {
   "meta": {
     "theme": "jsonresume-theme-folio",
-    "singlePage": true,
     "pdfRenderOptions": {
-      "width": "240mm"
+      "width": "242mm"
     }
   }
 }
