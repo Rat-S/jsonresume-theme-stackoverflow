@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/deadrat-in/jsonresume-theme-folio/compare/v1.2.0...v1.2.1) (2026-08-20)
+
+
+### Bug Fixes
+
+*  single-page PDF export functionality with dynamic content height measuremen ([5f564de](https://github.com/deadrat-in/jsonresume-theme-folio/commit/5f564de90ae7b6545cea77d35626be4af059f7a8))
+
 # [1.2.0](https://github.com/deadrat-in/jsonresume-theme-folio/compare/v1.1.0...v1.2.0) (2026-08-20)
 
 
