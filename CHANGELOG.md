@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/deadrat-in/jsonresume-theme-folio/compare/v1.2.2...v1.3.0) (2026-08-20)
+
+
+### Features
+
+* default folio-export to single-page mode with 242mm width ([fbfeda1](https://github.com/deadrat-in/jsonresume-theme-folio/commit/fbfeda18bd0a31070c5627b5f9ba2e2965163ae3))
+
 ## [1.2.2](https://github.com/deadrat-in/jsonresume-theme-folio/compare/v1.2.1...v1.2.2) (2026-08-20)
 
 
