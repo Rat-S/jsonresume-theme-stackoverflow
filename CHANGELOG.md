@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/deadrat-in/jsonresume-theme-folio/compare/v1.2.1...v1.2.2) (2026-08-20)
+
+
+### Bug Fixes
+
+* increase initial print buffer to 240px and add self-verifying single-page loop ([dde8ae1](https://github.com/deadrat-in/jsonresume-theme-folio/commit/dde8ae197e752cddf4e2a9480e016a9e85a9f66e))
+
 ## [1.2.1](https://github.com/deadrat-in/jsonresume-theme-folio/compare/v1.2.0...v1.2.1) (2026-08-20)
 
 
