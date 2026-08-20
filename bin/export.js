@@ -20,7 +20,7 @@ async function loadPuppeteer() {
     // Continue
   }
 
-  // 2. Try resolving with search paths (cwd, theme dir, global npm root, home .npm-global)
+  // 2. Try resolving with search paths
   const searchPaths = [
     process.cwd(),
     __dirname,
@@ -48,6 +48,21 @@ async function loadPuppeteer() {
       '\x1b[31mError: Could not load "puppeteer". Please install it via "npm install -D puppeteer" or "npm install -g puppeteer".\x1b[0m'
     );
     process.exit(1);
+  }
+}
+
+function parseDimensionToPx(dim, defaultPx = 907) {
+  if (!dim) return defaultPx;
+  const match = String(dim).trim().match(/^([0-9.]+)\s*(mm|cm|in|px|pt)?$/i);
+  if (!match) return defaultPx;
+  const val = parseFloat(match[1]);
+  const unit = (match[2] || 'px').toLowerCase();
+  switch (unit) {
+    case 'mm': return Math.round(val * 96 / 25.4);
+    case 'cm': return Math.round(val * 96 / 2.54);
+    case 'in': return Math.round(val * 96);
+    case 'pt': return Math.round(val * 96 / 72);
+    default: return Math.round(val);
   }
 }
 
@@ -161,7 +176,6 @@ async function run() {
 
   try {
     const page = await browser.newPage();
-    await page.setContent(html, { waitUntil: 'networkidle0' });
 
     let pdfOptions = {
       printBackground: true,
@@ -175,8 +189,19 @@ async function run() {
 
     if (isSinglePage) {
       const targetWidth = cliOpts.width || pdfOptions.width || '240mm';
-      
-      // Calculate exact rendered height of the body/content
+      const widthPx = parseDimensionToPx(targetWidth, 907);
+
+      // Set viewport width to match print width accurately
+      await page.setViewport({ width: widthPx, height: 1200, deviceScaleFactor: 1 });
+      await page.setContent(html, { waitUntil: 'networkidle0' });
+      await page.emulateMediaType('print');
+
+      // Ensure sections flow continuously in single-page mode without print breaks
+      await page.addStyleTag({
+        content: '* { break-inside: auto !important; page-break-inside: auto !important; }'
+      });
+
+      // Measure exact content scroll height under print media styles
       const contentHeight = await page.evaluate(() => {
         const body = document.body;
         const html = document.documentElement;
@@ -190,14 +215,15 @@ async function run() {
       });
 
       pdfOptions.width = targetWidth;
-      // Add padding for top/bottom margins (default ~10-15px buffer)
-      const topMargin = pdfOptions.margin?.top ? 12 : 0;
-      const bottomMargin = pdfOptions.margin?.bottom ? 12 : 0;
-      pdfOptions.height = `${contentHeight + topMargin + bottomMargin + 10}px`;
+      // Add small margin buffer (120px) to accommodate CSS @page margins without triggering a second page
+      const tightHeightPx = contentHeight + 120;
+      pdfOptions.height = `${tightHeightPx}px`;
+      pdfOptions.margin = 0;
       delete pdfOptions.format;
 
-      console.log(`\x1b[36mExporting single-page PDF (width: ${pdfOptions.width}, exact height: ${pdfOptions.height})...\x1b[0m`);
+      console.log(`\x1b[36mExporting single-page PDF (width: ${pdfOptions.width}, exact height: ${tightHeightPx}px)...\x1b[0m`);
     } else {
+      await page.setContent(html, { waitUntil: 'networkidle0' });
       console.log(`\x1b[36mExporting multi-page PDF...\x1b[0m`);
     }
 
