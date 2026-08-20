@@ -5,8 +5,12 @@
   "author": "Jay S (deadrat)",
   "scripts": {
     "build": "node build.js",
+    "export": "node bin/export.js",
     "test": "npm run build && jest --coverage --verbose",
     "updateTestSnapshots": "npm run build && jest --updateSnapshot"
+  },
+  "bin": {
+    "folio-export": "./bin/export.js"
   },
   "repository": {
     "type": "git",
