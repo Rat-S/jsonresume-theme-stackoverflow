@@ -66,6 +66,12 @@ function parseDimensionToPx(dim, defaultPx = 907) {
   }
 }
 
+function getPdfPageCount(buffer) {
+  const text = Buffer.from(buffer).toString('latin1');
+  const pageObjs = text.match(/\/Type\s*\/Page(?![s\w])/g);
+  return pageObjs ? pageObjs.length : 1;
+}
+
 function parseArgs(args) {
   const options = {
     file: 'resume.json',
@@ -187,6 +193,8 @@ async function run() {
     if (cliOpts.width) pdfOptions.width = cliOpts.width;
     if (cliOpts.height) pdfOptions.height = cliOpts.height;
 
+    let pdfBuffer;
+
     if (isSinglePage) {
       const targetWidth = cliOpts.width || pdfOptions.width || '240mm';
       const widthPx = parseDimensionToPx(targetWidth, 907);
@@ -215,19 +223,34 @@ async function run() {
       });
 
       pdfOptions.width = targetWidth;
-      // Add small margin buffer (120px) to accommodate CSS @page margins without triggering a second page
-      const tightHeightPx = contentHeight + 120;
-      pdfOptions.height = `${tightHeightPx}px`;
       pdfOptions.margin = 0;
       delete pdfOptions.format;
 
-      console.log(`\x1b[36mExporting single-page PDF (width: ${pdfOptions.width}, exact height: ${tightHeightPx}px)...\x1b[0m`);
+      // Start with safe initial buffer (+240px) to balance top/bottom margins, with self-verifying loop as safety net
+      let heightPx = contentHeight + 240;
+      let attempts = 0;
+
+      while (attempts < 10) {
+        pdfBuffer = await page.pdf({
+          ...pdfOptions,
+          height: `${heightPx}px`,
+        });
+
+        const pages = getPdfPageCount(pdfBuffer);
+        if (pages === 1) {
+          break;
+        }
+        heightPx += 40;
+        attempts++;
+      }
+
+      console.log(`\x1b[36mExporting guaranteed single-page PDF (width: ${pdfOptions.width}, exact height: ${heightPx}px)...\x1b[0m`);
     } else {
       await page.setContent(html, { waitUntil: 'networkidle0' });
       console.log(`\x1b[36mExporting multi-page PDF...\x1b[0m`);
+      pdfBuffer = await page.pdf(pdfOptions);
     }
 
-    const pdfBuffer = await page.pdf(pdfOptions);
     await fs.writeFile(outputPath, pdfBuffer);
 
     console.log(`\x1b[32mSuccessfully exported resume to \x1b[1m${outputPath}\x1b[0m 🚀`);
