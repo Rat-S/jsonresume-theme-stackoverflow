@@ -42,6 +42,8 @@ Point your `resume.json` at the theme:
 
 This theme bundles a dedicated PDF export CLI (`folio-export`) that dynamically measures the DOM height to produce a **continuous single-page PDF with zero trailing whitespace** by default (default width `242mm`):
 
+> **Note:** `folio-export` requires [Puppeteer](https://pptr.dev/) to render PDFs via headless Chromium. Ensure Puppeteer is installed in your project (`npm install -D puppeteer`) or globally (`npm install -g puppeteer`).
+
 ```bash
 # 1. Export exact single page (default, 242mm width, zero empty whitespace):
 npx folio-export resume.json -o resume.pdf
