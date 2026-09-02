@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/deadrat-in/jsonresume-theme-folio/compare/v1.3.0...v1.3.1) (2026-09-02)
+
+
+### Bug Fixes
+
+* add optional puppeteer peer dependency and update lockfile ([7f70bcf](https://github.com/deadrat-in/jsonresume-theme-folio/commit/7f70bcfbe5476589a28f579619b8592c66268ba3))
+
 # [1.3.0](https://github.com/deadrat-in/jsonresume-theme-folio/compare/v1.2.2...v1.3.0) (2026-08-20)
 
 
